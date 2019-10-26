@@ -28,20 +28,24 @@
         <div class="user-block__second">
             <statistic></statistic>
         </div>
-        <div class="user-block__third"></div>
+        <div class="user-block__third">
+            <trip></trip>
+        </div>
         <div class="user-block__fourth"></div>
     </div>
 </template>
 
 <script>
     import rating from '../plugins/RatingComponent'
-    import statistic from '../svg/statistic'
+    import statistic from './components/Statistic'
+    import trip from './components/AccountTrip'
 
     export default {
         name: "user",
         components: {
             rating,
-            statistic
+            statistic,
+            trip
         },
         data() {
             return {
@@ -121,16 +125,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,1);
 
         }
 
         &__third {
             width: 25%;
-            background-color: darkolivegreen;
         }
 
         &__fourth {
             width: 25%;
+            box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,1);
         }
     }
 
@@ -144,11 +149,14 @@
             flex-wrap: wrap;
             width: 100%;
             height: 60vh;
+            box-shadow: none;
+
             &__first {
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: space-evenly;
+                box-shadow: none;
 
                 .preferences {
                     position: relative;
@@ -168,16 +176,17 @@
 
             &__second {
                 width: 100%;
-                background-color: darkkhaki;
+                box-shadow: none;
             }
 
             &__third {
                 width: 100%;
-                background-color: darkolivegreen;
+                box-shadow: none;
             }
 
             &__fourth {
                 width: 100%;
+                box-shadow: none;
             }
         }
     }

@@ -6,7 +6,7 @@
 
         <title>Laravel</title>
         <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">    </head>
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Rubik&display=swap" rel="stylesheet">    </head>
     <body style="overflow:hidden">
         <div id="app">
             <app></app>
