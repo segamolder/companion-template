@@ -15,8 +15,8 @@
                         </div>
                         <div class="hasTrip__tripInfo">
                             <vs-list>
-                                <vs-list-item title="Откуда" subtitle="Чебоксары"></vs-list-item>
-                                <vs-list-item title="Куда" subtitle="Москва"></vs-list-item>
+                                <vs-list-item title="Откуда" :subtitle="trip.whereFrom"></vs-list-item>
+                                <vs-list-item title="Куда" :subtitle="trip.whereTo"></vs-list-item>
                                 <vs-list-item title="Когда" subtitle="26 октября 2019 г., 3:54"></vs-list-item>
                                 <vs-list-item title="Количество свободных мест" subtitle="3"></vs-list-item>
                                 <vs-list-item title="Цена за место" subtitle="350"></vs-list-item>
@@ -25,22 +25,38 @@
                         </div>
                         <div slot="footer" class="card-footer">
                             <vs-row vs-justify="flex-end">
-                                <vs-button color="rgb(230,230,230)" color-text="rgb(50,50,50)" icon="settings" style="padding: 0"></vs-button>
+                                <vs-button @click="showModal = true" color="rgb(230,230,230)" color-text="rgb(50,50,50)" icon="settings" style="padding: 0"></vs-button>
                             </vs-row>
                         </div>
                     </vs-card>
                 </vs-col>
             </vs-row>
         </div>
+        <trip-modal @setAddress="setAddress1" v-if="showModal" @close="showModal = false" :whereFrom="trip.whereFrom" :whereTo="trip.whereTo"></trip-modal>
     </div>
 </template>
 
 <script>
+    import tripModal from '../components/TripEditModal';
     export default {
         name: "AccountTrip",
+        components: {
+            tripModal
+        },
         data() {
             return {
-                hasTrip: false
+                trip: {
+                    whereFrom: 'Россия, Чувашская Республика, Чебоксары',
+                    whereTo: 'Россия, Московская область, Подольск'
+                },
+                hasTrip: false,
+                showModal: false,
+            }
+        },
+        methods: {
+            setAddress1(address) {
+                this.trip.whereFrom = address.whereFrom;
+                this.trip.whereTo = address.whereTo;
             }
         }
     }
