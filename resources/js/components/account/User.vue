@@ -31,7 +31,9 @@
         <div class="user-block__third">
             <trip></trip>
         </div>
-        <div class="user-block__fourth"></div>
+        <div class="user-block__fourth">
+            <comment></comment>
+        </div>
     </div>
 </template>
 
@@ -39,13 +41,15 @@
     import rating from '../plugins/RatingComponent'
     import statistic from './components/Statistic'
     import trip from './components/AccountTrip'
+    import comment from './components/AccountComment'
 
     export default {
         name: "user",
         components: {
             rating,
             statistic,
-            trip
+            trip,
+            comment
         },
         data() {
             return {

@@ -18,7 +18,7 @@ import Account from './components/account/Layout';
 import Welcome from './components/Welcome';
 import AccountUser from './components/account/User'
 import AccountCar from './components/account/Car'
-import AccountStatistic from './components/account/Statistic'
+import AccountStatistic from './components/account/AccountStatistic'
 
 const router = new VueRouter({
     mode: 'history',
