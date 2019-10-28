@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <svg v-if="userStat" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="305" height="266"
+    <div id="statistic-container" class="vs-con-loading__container">
+        <span>
+        <svg v-if="userStat"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="305" height="266"
              viewBox="0 0 305 266">
             <defs>
                 <filter id="Ellipse_1" x="0" y="0" width="82" height="80" filterUnits="userSpaceOnUse">
@@ -129,8 +131,11 @@
                 <tspan x="0" y="0">Общее время в пути</tspan>
             </text>
         </svg>
-        <svg v-if="carStat" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="305" height="266"
-             viewBox="0 0 305 266">
+        </span>
+        <span>
+            <svg v-if="carStat"
+                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="305" height="266"
+                 viewBox="0 0 305 266">
             <defs>
                 <filter id="Ellipse_1" x="0" y="0" width="82" height="80" filterUnits="userSpaceOnUse">
                     <feOffset dy="3" input="SourceAlpha"/>
@@ -258,9 +263,14 @@
                 <tspan x="0" y="0">Общее время в пути</tspan>
             </text>
         </svg>
+        </span>
         <div>
-            <vs-button v-on:click="setStatClass('user')" type="line" color="#737373" :class="{activeStat: userStat}">Пассажир</vs-button>
-            <vs-button v-on:click="setStatClass('car')" type="line" color="#737373" :class="{activeStat: carStat}">Водитель</vs-button>
+            <vs-button v-on:click="setStatClass('user')" type="line" color="#737373" :class="{activeStat: userStat}">
+                Пассажир
+            </vs-button>
+            <vs-button v-on:click="setStatClass('car')" type="line" color="#737373" :class="{activeStat: carStat}">
+                Водитель
+            </vs-button>
         </div>
     </div>
 </template>
@@ -292,14 +302,28 @@
                     case 'user':
                         this.userStat = true;
                         this.carStat = false;
+                        this.getData();
                         break;
                     case 'car':
                         this.carStat = true;
                         this.userStat = false;
+                        this.getData()
                         break;
                 }
-
+            },
+            getData() {
+                this.$vs.loading({
+                    container: '#statistic-container',
+                    scale: 0.6
+                });
+                //Заглушка под получение данных
+                setTimeout(() => {
+                    this.$vs.loading.close('#statistic-container > .con-vs-loading')
+                }, 2500);
             }
+        },
+        mounted() {
+            this.getData('user');
         }
     }
 </script>
@@ -309,6 +333,7 @@
         color: black !important;
         font-weight: bold !important;
     }
+
     .popup {
         font-size: 13px;
         font-style: italic;

@@ -1,5 +1,5 @@
 <template>
-    <div class="comment-container">
+    <div id="comment-container" class="vs-con-loading__container">
         <vs-card v-for="(item, index) in data" :key="index">
             <div slot="header" class="header">
                 <vs-avatar :src="item.img" />
@@ -18,8 +18,8 @@
     export default {
         name: "AccountComment",
         props: {
-          userId: Number,
-          showCarComments: Boolean
+          userId: String,
+          showCarComments: Boolean,
         },
         data() {
             return {
@@ -44,16 +44,25 @@
         },
         methods: {
             getData() {
+                let self=this;
                 if (this.userId !== null) {
                     if (this.showCarComments) {
                         //Получаем комментарии по машине
                     } else {
                         //Получаем комментарии по поездкам
                     }
+                    self.$vs.loading({
+                        container: '#comment-container',
+                        scale: 0.6
+                    });
+                    //Заглушка под получение данных
+                    setTimeout(() => {
+                        this.$vs.loading.close('#comment-container > .con-vs-loading')
+                    }, 2500);
                 }
             }
         },
-        created() {
+        mounted() {
             this.getData();
         }
     }
@@ -71,7 +80,7 @@
         border-radius: 5px;
     }
 
-    .comment-container {
+    #comment-container {
         display: flex;
         flex-direction: column;
         align-items: center;

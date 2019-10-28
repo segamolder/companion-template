@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="83e9c968-50ac-4f10-90a9-8f78ac52281a" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/account/Statistic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/AccountStatistic.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/account/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/Layout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/account/User.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/User.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/account/components/AccountTrip.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/components/AccountTrip.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/account/components/TripEditModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/components/TripEditModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/account/components/Statistic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/account/components/AccountStatistic.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,32 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Layout.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Layout.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/js/components/account/Layout.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/account/User.vue">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-              <folding>
-                <element signature="e#1482#1529#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountComment.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -70,7 +45,7 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-102">
               <caret column="16" selection-start-column="16" selection-end-column="16" />
             </state>
           </provider>
@@ -123,7 +98,6 @@
         <option value="$PROJECT_DIR$/resources/js/components/Welcome.vue" />
         <option value="$PROJECT_DIR$/resources/js/route-helper.js" />
         <option value="$PROJECT_DIR$/resources/js/components/App.vue" />
-        <option value="$PROJECT_DIR$/resources/js/components/account/Layout.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/plugins/RatingComponent.vue" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -133,7 +107,9 @@
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/components/account/components/TripEditModal.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/account/components/AccountTrip.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/account/Layout.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/account/User.vue" />
+        <option value="$PROJECT_DIR$/resources/js/components/account/components/AccountStatistic.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue" />
       </list>
     </option>
@@ -401,7 +377,7 @@
       <workItem from="1571866587468" duration="4842000" />
       <workItem from="1571871549387" duration="4240000" />
       <workItem from="1571953966701" duration="48301000" />
-      <workItem from="1572200068232" duration="19919000" />
+      <workItem from="1572200068232" duration="28714000" />
     </task>
     <task id="LOCAL-00001" summary="Добавил статистику в аккаунт">
       <created>1572043224920</created>
@@ -431,25 +407,31 @@
       <option name="project" value="LOCAL" />
       <updated>1572136002369</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Добавил последнюю поездку и комментарии">
+      <created>1572224164790</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1572224164790</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111728000" />
+    <option name="totallyTimeSpent" value="120523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49716714" visible="true" weight="0.25644416" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32905984" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" visible="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.27492878" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2834758" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2834758" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
@@ -476,11 +458,12 @@
     <MESSAGE value="Добавил статистику в аккаунт" />
     <MESSAGE value="Добавил поездку в аккаунт" />
     <MESSAGE value="up" />
-    <option name="LAST_COMMIT_MESSAGE" value="up" />
+    <MESSAGE value="Добавил последнюю поездку и комментарии" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил последнюю поездку и комментарии" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -692,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.mix.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -710,16 +686,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="29" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/Statistic.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="269" column="8" selection-start-line="269" selection-start-column="8" selection-end-line="269" selection-end-column="8" />
-          <folding>
-            <element signature="n#svg#1;n#div#0;n#template#0;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -752,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/account/Layout.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/vuesax/dist/vuesax.umd.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="142">
@@ -766,30 +725,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/AccountTrip.vue">
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="83" column="47" selection-start-line="83" selection-start-column="47" selection-end-line="83" selection-end-column="47" />
-          <folding>
-            <element signature="n#style#0;n#vs-button#0;n#vs-row#0;n#div#2;n#vs-card#0;n#vs-col#0;n#vs-row#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-102">
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/account/User.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="858">
+          <caret line="92" column="27" selection-start-line="92" selection-start-column="27" selection-end-line="92" selection-end-column="27" />
           <folding>
             <element signature="e#1482#1529#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/AccountStatistic.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="265" column="15" selection-start-line="265" selection-start-column="15" selection-end-line="265" selection-end-column="15" />
+          <folding>
+            <element signature="n#svg#0;n#span#0;n#div#0;n#template#0;n#!!top" />
+            <element signature="n#svg#0;n#span#1;n#div#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/AccountComment.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+        <state relative-caret-position="388">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/account/components/AccountTrip.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="65" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#vs-button#0;n#vs-row#0;n#div#2;n#vs-card#0;n#vs-col#0;n#vs-row#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/account/Layout.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="28" />
         </state>
       </provider>
     </entry>

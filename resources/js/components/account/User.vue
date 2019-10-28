@@ -32,19 +32,20 @@
             <trip></trip>
         </div>
         <div class="user-block__fourth">
-            <comment></comment>
+            <comment :userId="id"></comment>
         </div>
     </div>
 </template>
 
 <script>
     import rating from '../plugins/RatingComponent'
-    import statistic from './components/Statistic'
+    import statistic from './components/AccountStatistic'
     import trip from './components/AccountTrip'
     import comment from './components/AccountComment'
 
     export default {
         name: "user",
+        props: ['id'],
         components: {
             rating,
             statistic,
@@ -78,6 +79,18 @@
                     }
                 }
             }
+        },
+        methods: {
+            getData() {
+                this.$vs.loading();
+                //Заглушка под получение данных
+                setTimeout( ()=> {
+                    this.$vs.loading.close();
+                }, 2000);
+            }
+        },
+        created() {
+            this.getData();
         },
         mounted() {
             $('.stat_count').mouseenter(function () {
