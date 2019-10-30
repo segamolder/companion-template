@@ -1,6 +1,6 @@
 <template>
     <div class="star-rating">
-        <label class="star-rating__star" v-for="rating in ratings"
+        <label class="star-rating__star" :style="'font-size:' + size" v-for="rating in ratings"
                :class="{'is-selected': ((value >= rating) && value != null), 'is-disabled': disabled}"
                v-on:click="set(rating)" v-on:mouseover="star_over(rating)" v-on:mouseout="star_out">
             <input class="star-rating star-rating__checkbox" type="radio" :value="rating" :name="name"
@@ -17,7 +17,8 @@
             'id': String,
             'disabled': Boolean,
             'required': Boolean,
-            'tripInfoId': Number
+            'tripInfoId': Number,
+            'size' : String,
         },
         name: "star-rating",
         data: function () {

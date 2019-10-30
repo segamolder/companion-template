@@ -10,16 +10,16 @@
                 </div>
 
                 <vs-navbar-item index="0">
-                    <a href="#">
+                    <router-link to="/trip/search">
                         <i class="fas fa-search header-search"></i>
                         Найти поездку
-                    </a>
+                    </router-link>
                 </vs-navbar-item>
                 <vs-navbar-item index="1">
-                    <a href="#" class="directions_car">
+                    <router-link to="/trip/create">
                         <i class="fas fa-car-side header-car"></i>
                         Создать поездку
-                    </a>
+                    </router-link>
                 </vs-navbar-item>
                 <vs-navbar-item index="1">
                     <router-link :to="'/account/'+id">
@@ -50,7 +50,7 @@
     $trip-search-color: #3490dc;
     .logo {
         height: 7vh;
-        padding: 1vh;
+        padding: 1vh 3vw;
         &:hover {
             cursor: pointer;
         }

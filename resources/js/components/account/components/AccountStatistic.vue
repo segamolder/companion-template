@@ -278,6 +278,10 @@
 <script>
     export default {
         name: "statistic",
+        props: {
+          userStat:Boolean,
+          carStat:Boolean
+        },
         data() {
             return {
                 passenger: {
@@ -292,8 +296,6 @@
                     totalNumberOfKilometers: '465',
                     totalTravelTime: '7'
                 },
-                userStat: true,
-                carStat: false
             }
         },
         methods: {

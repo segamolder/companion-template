@@ -1,10 +1,16 @@
 <template>
     <div class="user-block">
         <div class="user-block__first">
+            <i class="fas fa-cog settings"></i>
             <vs-avatar class="profile" size="100px"
                        :src="user.photo"/>
             <div>
-                <h3 class="pb-3">{{user.name}}</h3>
+                <h3 class="pb-3">{{user.name}}
+                    <a href="#">
+                        <i class="fab fa-vk" style="color: #4a76a8"></i>
+                    </a>
+                </h3>
+
 
                 <p class="pb-3">{{user.phone}}</p>
 
@@ -26,7 +32,7 @@
             </div>
         </div>
         <div class="user-block__second">
-            <statistic></statistic>
+            <statistic userStat="true"></statistic>
         </div>
         <div class="user-block__third">
             <trip></trip>
@@ -84,7 +90,7 @@
             getData() {
                 this.$vs.loading();
                 //Заглушка под получение данных
-                setTimeout( ()=> {
+                setTimeout(() => {
                     this.$vs.loading.close();
                 }, 2000);
             }
@@ -108,7 +114,7 @@
 
 <style scoped lang="scss">
     .user-block {
-        box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,1);
+        box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 1);
         display: flex;
         width: 100%;
         height: 52vh;
@@ -118,6 +124,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            .settings {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                margin: 10px;
+                color: #bbb;
+            }
 
             .profile {
                 margin: 0;
@@ -142,7 +156,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,1);
+            box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 1);
 
         }
 
@@ -152,7 +166,7 @@
 
         &__fourth {
             width: 25%;
-            box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,1);
+            box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, 1);
         }
     }
 
@@ -174,6 +188,12 @@
                 align-items: center;
                 justify-content: space-evenly;
                 box-shadow: none;
+
+                .settings {
+                    position: relative;
+                    align-self: baseline;
+                    color: #bbb;
+                }
 
                 .preferences {
                     position: relative;

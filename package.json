@@ -21,6 +21,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@chenfengyuan/datepicker": "^1.0.9",
         "bootstrap-vue": "^2.0.4",
         "chart.js": "^2.8.0",
         "inputmask": "^4.0.9",

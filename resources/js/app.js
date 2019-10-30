@@ -7,6 +7,8 @@ import 'vuesax/dist/vuesax.css'
 import 'material-icons/iconfont/material-icons.css';
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import '@chenfengyuan/datepicker/dist/datepicker.min.css'
+import '@chenfengyuan/datepicker/dist/datepicker.min'
 import { TooltipPlugin } from 'bootstrap-vue'
 Vue.use(TooltipPlugin)
 Vue.use(Vuesax);
@@ -18,12 +20,15 @@ import Account from './components/account/Layout';
 import Welcome from './components/Welcome';
 import AccountUser from './components/account/User'
 import AccountCar from './components/account/Car'
-import AccountStatistic from './components/account/AccountStatistic'
+import TripSearch from './components/trip/search/Layout'
+import TripCreate from './components/trip/create/Layout'
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/', component: Welcome },
+        { path: '/trip/search', component: TripSearch },
+        { path: '/trip/create', component: TripCreate },
         { path: '/account/:id',
             component: Account,
             props: true,
@@ -41,11 +46,6 @@ const router = new VueRouter({
                 {
                     path: 'car',
                     component: AccountCar,
-                    props: true
-                },
-                {
-                    path: 'statistic',
-                    component: AccountStatistic,
                     props: true
                 },
             ]
