@@ -1,26 +1,69 @@
 <template>
     <div class="trip-create-container">
-        <div class="trip-create">
-            <div id="map" style="width:100%;height:40vh"></div>
-            <div class="trip-create-inputs">
-                <vs-row class="trip-create-inputs__row">
-                    <vs-col vs-w="6" class="trip-create-inputs__first">
-                        <p v-if="tripRoutes.from.address != null">Откуда: {{tripRoutes.from.address}}</p>
-                        <p v-else>Откуда: <vs-button type="line" @click='focusInput(".ymaps-2-1-74-route-panel-input__input", 0)'>Укажите на карте</vs-button></p>
-                        <p v-if="tripRoutes.to.address != null">Куда: {{tripRoutes.to.address}}</p>
-                        <p v-else>Куда: <vs-button type="line" @click='focusInput(".ymaps-2-1-74-route-panel-input__input", 1)'>Укажите на карте</vs-button></p>
-                        <vs-input label-placeholder="Когда" class="trip-create-input" v-model="value1"/>
-                        <vs-input label-placeholder="Цена" class="trip-create-input" v-model="value1"/>
-                    </vs-col>
-                    <vs-col vs-w="6" class="trip-create-inputs__second">
-                        <vs-input-number v-model="number"/>
-                        <vs-checkbox v-model="checkBox1">Не больше двух человек на заднем сиденье</vs-checkbox>
+        <span class="bg_img" :style="'background-image: url('+backgroundImage+')' "></span>
+        <div id="map"
+             style="width:40vw;height:85vh; display:flex; justify-content: center; align-items: center; padding: 15px;"></div>
+        <div class="trip-right-side">
+            <div class="trip-create">
+                <div class="trip-create-inputs">
+                    <vs-row class="trip-create-inputs__row">
+                        <vs-col vs-w="6" class="trip-create-inputs__first">
+                            <p v-if="tripRoutes.from.address != null"><b>Откуда:</b> {{tripRoutes.from.address}}</p>
+                            <p v-else><b>Откуда:</b>
+                                <vs-button type="line" @click='focusInput(".ymaps-2-1-74-route-panel-input__input", 0)'>
+                                    Укажите на карте
+                                </vs-button>
+                            </p>
+                            <p v-if="tripRoutes.to.address != null"><b>Куда:</b> {{tripRoutes.to.address}}</p>
+                            <p v-else><b>Куда:</b>
+                                <vs-button type="line" @click='focusInput(".ymaps-2-1-74-route-panel-input__input", 1)'>
+                                    Укажите на карте
+                                </vs-button>
+                            </p>
+                            <vs-input data-toggle="datepicker" label-placeholder="Когда" class="trip-create-input" v-model="trip.dateTime"/>
+                            <vs-input label-placeholder="Цена" class="trip-create-input" v-model="trip.price"/>
+                        </vs-col>
+                        <vs-col vs-w="6" class="trip-create-inputs__second">
+                            <vs-input-number label="Количество мест:" style="background: none"
+                                             v-model="trip.free_places"/>
+                            <vs-checkbox class="trip-create-inputs__checkbox" v-model="trip.checkbox">Не больше двух человек на заднем сиденье</vs-checkbox>
+                            <vs-button color="primary" type="filled">Создать</vs-button>
+                        </vs-col>
+                    </vs-row>
+                </div>
+            </div>
+            <div class="trip-result">
+                <vs-row class="hasTrip__row">
+                    <vs-col vs-w="6" class="hasTrip__container">
+                        <vs-card class="hasTrip__card">
+                            <div slot="header">
+                                <h3>
+                                    Текущая поездка
+                                </h3>
+                            </div>
+                            <div class="hasTrip__tripInfo">
+                                <vs-list>
+                                    <vs-list-item v-if="tripRoutes.from.address !== null" title="Откуда"
+                                                  :subtitle="tripRoutes.from.address"></vs-list-item>
+                                    <vs-list-item v-else title="Откуда" subtitle="-"></vs-list-item>
+                                    <vs-list-item v-if="tripRoutes.from.address !== null" title="Куда"
+                                                  :subtitle="tripRoutes.to.address"></vs-list-item>
+                                    <vs-list-item v-else title="Куда" subtitle="-"></vs-list-item>
+                                    <vs-list-item title="Когда" :subtitle="trip.dateTime"></vs-list-item>
+                                    <vs-list-item title="Количество свободных мест"
+                                                  :subtitle="trip.free_places.toString()"></vs-list-item>
+                                    <vs-list-item title="Цена за место"
+                                                  :subtitle="trip.price.toString()"></vs-list-item>
+                                </vs-list>
+                            </div>
+                            <div slot="footer" class="card-footer">
+
+                            </div>
+                        </vs-card>
                     </vs-col>
                 </vs-row>
-            </div>
-        </div>
-        <div class="trip-result">
 
+            </div>
         </div>
     </div>
 </template>
@@ -30,6 +73,7 @@
         name: "Layout",
         data() {
             return {
+                backgroundImage: '/images/trip/background.jpg',
                 myMap: null,
                 tripRoutes: {
                     from: {
@@ -43,6 +87,12 @@
                     durationValue: null,
                     distanceValue: null
                 },
+                trip: {
+                    price: '',
+                    dateTime: '',
+                    free_places: 1,
+                    checkbox: false
+                }
             }
         },
         methods: {
@@ -106,18 +156,51 @@
         },
         updated() {
             this.getUpdatedRoutes();
+        },
+        mounted() {
+            $('[data-toggle="datepicker"]').datepicker({
+                language: 'ru-RU'
+            });
         }
     }
 </script>
 
 <style scoped lang="scss">
+    .bg_img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        -webkit-filter: grayscale(70%);
+        background-position: center;
+        background-size: cover;
+        z-index: -1;
+    }
+
+    .trip-create-container {
+        display: flex;
+        font-family: 'Montserrat', sans-serif;
+
+        .trip-right-side {
+            width: 60vw;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+    }
+
+    #map {
+
+    }
+
     .trip-create {
-        width: 65%;
+        height: 50%;
+        width: 100%;
         padding: 15px;
     }
 
     .trip-result {
-        width: 35%;
+        height: 50%;
+        width: 100%;
     }
 
     .trip-create-inputs {
@@ -136,7 +219,91 @@
         }
 
         &__second {
+            margin-left: 0%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+    }
 
+    .hasTrip {
+        &__row {
+            justify-content: flex-end;
+            display: flex;
+            width: 100%;
+            padding: 15px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        #map {
+            width: 100% !important;
+        }
+
+        .trip-create-container {
+            flex-direction: column;
+            overflow-y: scroll;
+            height: 100vh;
+
+            .trip-right-side {
+                width: 100%;
+                flex-direction: column;
+                height: 33vh;
+
+                .trip-create {
+                    height: auto;
+                    .trip-create-inputs {
+                        height: 100%;
+                        width: 100%;
+                        &__row {
+                            display: flex;
+                            width: 100%;
+                        }
+                        &__first {
+                            margin-left: 0;
+                            width: 50%;
+                        }
+
+                        &_second {
+                            margin-left: 0;
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .trip-create-inputs {
+            &__checkbox {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .trip-result {
+            height: 100%;
+            width: 90vw;
+
+            .hasTrip {
+                &__row {
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    justify-content: normal;
+                }
+
+                &__container {
+                    margin-left: 0%;
+                    width: 50%;
+                    height: 100%;
+                }
+
+                &__card {
+                    width: 90vw;
+                }
+            }
         }
     }
 </style>
