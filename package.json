@@ -24,6 +24,7 @@
         "@chenfengyuan/datepicker": "^1.0.9",
         "bootstrap-vue": "^2.0.4",
         "chart.js": "^2.8.0",
+        "eslint": "^6.6.0",
         "inputmask": "^4.0.9",
         "jquery": "^3.4.1",
         "material-icons": "^0.3.1",

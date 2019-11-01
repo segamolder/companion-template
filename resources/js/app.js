@@ -18,10 +18,17 @@ Vue.use(VueRouter);
 import App from './components/App';
 import Account from './components/account/Layout';
 import Welcome from './components/Welcome';
-import AccountUser from './components/account/User'
-import AccountCar from './components/account/Car'
-import TripSearch from './components/trip/search/Layout'
-import TripCreate from './components/trip/create/Layout'
+import AccountUser from './components/account/User';
+import AccountCar from './components/account/Car';
+import TripSearch from './components/trip/search/Layout';
+import TripCreate from './components/trip/create/Layout';
+//#region Settings
+import AccountSettings from './components/settings/Layout';
+import AccountDriverSettings from './components/settings/Driver';
+import AccountPasswordSettings from './components/settings/Password';
+import AccountPreferencesSettings from './components/settings/Preferences';
+import AccountUserSettings from './components/settings/User';
+//#endregion
 
 const router = new VueRouter({
     mode: 'history',
@@ -46,6 +53,37 @@ const router = new VueRouter({
                 {
                     path: 'car',
                     component: AccountCar,
+                    props: true
+                },
+            ]
+        },
+        { path: '/settings/:id',
+            component: AccountSettings,
+            props: true,
+            children: [
+                {
+                    path: '',
+                    component: AccountUserSettings,
+                    props: true
+                },
+                {
+                    path: 'user',
+                    component: AccountUserSettings,
+                    props: true
+                },
+                {
+                    path: 'driver',
+                    component: AccountDriverSettings,
+                    props: true
+                },
+                {
+                    path: 'preferences',
+                    component: AccountPreferencesSettings,
+                    props: true
+                },
+                {
+                    path: 'password',
+                    component: AccountPasswordSettings,
                     props: true
                 },
             ]

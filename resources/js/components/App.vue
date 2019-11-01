@@ -48,7 +48,7 @@
 
             <div class="footer-sidebar" slot="footer">
                 <vs-button icon="reply" color="danger" type="flat">Выйти</vs-button>
-                <vs-button icon="settings" color="primary" type="border"></vs-button>
+                <vs-button icon="settings" color="primary" type="border" @click="$router.push('/settings/'+id+'/user');"></vs-button>
             </div>
 
         </vs-sidebar>
