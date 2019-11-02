@@ -28,6 +28,7 @@ import AccountDriverSettings from './components/settings/Driver';
 import AccountPasswordSettings from './components/settings/Password';
 import AccountPreferencesSettings from './components/settings/Preferences';
 import AccountUserSettings from './components/settings/User';
+import MyTrips from './components/trip/myTrips';
 //#endregion
 
 const router = new VueRouter({
@@ -36,6 +37,7 @@ const router = new VueRouter({
         { path: '/', component: Welcome },
         { path: '/trip/search', component: TripSearch },
         { path: '/trip/create', component: TripCreate },
+        { path: '/trip/my-trips', component: MyTrips },
         { path: '/account/:id',
             component: Account,
             props: true,

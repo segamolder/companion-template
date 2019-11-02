@@ -28,22 +28,20 @@
 
             </div>
 
-            <vs-sidebar-item index="1" icon="person">
-                <router-link :to="'/account/'+id">
+            <vs-sidebar-item index="1" icon="person" :to="'/account/'+id">
                     Профиль
-                </router-link>
             </vs-sidebar-item>
 
-            <vs-sidebar-item index="2" icon="search">
-                <router-link to="/trip/search">
+            <vs-sidebar-item index="2" icon="search" to="/trip/search">
                     Найти поездку
-                </router-link>
             </vs-sidebar-item>
 
-            <vs-sidebar-item index="3" icon="directions_car">
-                <router-link to="/trip/create">
+            <vs-sidebar-item index="3" icon="directions_car" to="/trip/create">
                     Создать поездку
-                </router-link>
+            </vs-sidebar-item>
+
+            <vs-sidebar-item index="4" icon="card_travel" to="/trip/my-trips">
+                    Мои поедки
             </vs-sidebar-item>
 
             <div class="footer-sidebar" slot="footer">
