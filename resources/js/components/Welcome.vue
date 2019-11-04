@@ -46,8 +46,10 @@
         }
 
         &__button {
+            font-family: "Neucha", cursive;
             width: 80%;
             height: 50px;
+            font-size: 1rem;
         }
     }
 

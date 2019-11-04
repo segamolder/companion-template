@@ -2,7 +2,7 @@
   <div class="user-settings-container">
     <vs-row class="user-settings-container__upload-photo">
       <vs-col vs-w="6" class="user-settings-container__upload-photo__result">
-        <vs-avatar size="150px" src="https://avatars2.githubusercontent.com/u/31676496?s=460&v=4" />
+        <vs-avatar size="150px" :src="data.user_image" />
       </vs-col>
       <vs-col vs-w="6" class="user-settings-container__upload-photo__upload">
         <vs-upload style="width: auto;" action="#" @on-success="successUpload" />
@@ -15,9 +15,9 @@
         <vs-input label="Отчество" v-model="data.lastname" />
       </vs-col>
       <vs-col vs-w="6" class="user-settings-container__inputs-container__second-block">
-        <vs-input id="phone" label="Телефон" v-model="data.phone" />
+        <vs-input id="phone" label="Телефон" v-model="data.phone_number" />
         <vs-input
-          v-if="data.isEmailConfirmed"
+          v-if="data.is_email_verified"
           :success="true"
           success-text="E-mail подтвержден"
           id="email"
@@ -33,8 +33,8 @@
           v-model="data.email"
         />
         <vs-row class="user-settings-container__inputs-container__second-block__buttons">
-          <vs-button v-if="!data.isEmailConfirmed" type="line">Отправить подтверждение на почту</vs-button>
-          <vs-button color="primary" type="filled">Сохранить</vs-button>
+          <vs-button v-if="!data.is_email_verified" type="line">Отправить подтверждение на почту</vs-button>
+          <vs-button @click="save" color="primary" type="filled">Сохранить</vs-button>
         </vs-row>
       </vs-col>
     </vs-row>
@@ -46,24 +46,21 @@ import Inputmask from "inputmask";
 export default {
   data() {
     return {
-      data: {
-        name: "",
-        surname: "",
-        lastname: "",
-        phone: "",
-        email: "",
-        isEmailConfirmed: false
-      }
+      data: auth.user,
     };
   },
   methods: {
+    save() {
+
+    },
     successUpload() {
       this.$vs.notify({
         color: "success",
         title: "Upload Success",
         text: "Lorem ipsum dolor sit amet, consectetur"
       });
-    }
+    },
+
   },
   mounted() {
     let phone = new Inputmask("+7(999)999-99-99");

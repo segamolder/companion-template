@@ -1,17 +1,20 @@
 <template>
-    <div>
+    <div class="app-container">
         <div>
             <vs-navbar v-model="activeItem" class="nabarx">
-
                 <div slot="title">
                     <router-link to="/">
                         <img src="/images/logo-black.svg" class="vs-navbar--title logo" alt="">
                     </router-link>
                 </div>
 
-                <vs-navbar-item style="margin-right: 15px" index="1">
+                <vs-navbar-item v-if="authenticated" style="margin-right: 15px" index="1">
                     <vs-avatar @click="active = !active"
-                               :src="user_img"/>
+                               :src="user.user_image"/>
+                </vs-navbar-item>
+                <vs-navbar-item v-if="!authenticated" style="margin-right: 15px" index="1">
+                    <vs-button class="auth-button" to="/login" color="primary" type="flat">Войти</vs-button>
+                    <vs-button class="auth-button" to="/register" color="primary" type="flat">Зарегистрироваться</vs-button>
                 </vs-navbar-item>
             </vs-navbar>
         </div>
@@ -20,33 +23,34 @@
         <vs-sidebar parent="body" default-index="0" color="primary" class="sidebarx" spacer v-model="active">
 
             <div class="header-sidebar" slot="header">
-                <vs-avatar size="70px" :src="user_img"/>
+                <vs-avatar size="70px" :src="user.user_image"/>
 
                 <h4>
-                    {{user_name}}
+                    {{user.name}} {{user.surname !== '' && user.surname !== null ? user.surname : ''}}
                 </h4>
 
             </div>
 
-            <vs-sidebar-item index="1" icon="person" :to="'/account/'+id">
-                    Профиль
+            <vs-sidebar-item index="1" icon="person" :to="'/account/'+user.id">
+                Профиль
             </vs-sidebar-item>
 
             <vs-sidebar-item index="2" icon="search" to="/trip/search">
-                    Найти поездку
+                Найти поездку
             </vs-sidebar-item>
 
             <vs-sidebar-item index="3" icon="directions_car" to="/trip/create">
-                    Создать поездку
+                Создать поездку
             </vs-sidebar-item>
 
             <vs-sidebar-item index="4" icon="card_travel" to="/trip/my-trips">
-                    Мои поедки
+                Мои поедки
             </vs-sidebar-item>
 
             <div class="footer-sidebar" slot="footer">
-                <vs-button icon="reply" color="danger" type="flat">Выйти</vs-button>
-                <vs-button icon="settings" color="primary" type="border" @click="$router.push('/settings/'+id+'/user');"></vs-button>
+                <vs-button @click="logout" icon="reply" color="danger" type="flat">Выйти</vs-button>
+                <vs-button icon="settings" color="primary" type="border"
+                           @click="$router.push('/settings/'+user.id+'/user');"></vs-button>
             </div>
 
         </vs-sidebar>
@@ -65,17 +69,46 @@
                 id: 1,
                 activeItem: 0,
                 active: false,
+
+                authenticated: auth.check(),
+                user: auth.user
             }
-        }
+        },
+        methods: {
+            logout() {
+                this.$vs.loading();
+                auth.logout();
+
+                Event.$on('userLoggedOut', () => {
+                    this.authenticated = false;
+                    this.active = false;
+                    this.$vs.loading.close();
+                    this.$router.push('/');
+                    this.$vs.notify({title:'Успешно!',text:'Выполнен выход из аккаунта',color:'success'})
+                })
+            }
+        },
+        mounted() {
+            Event.$on('userLoggedIn', () => {
+                this.authenticated = true;
+                this.user = auth.user;
+            });
+        },
     }
 </script>
 
 <style scoped lang="scss">
     $car-icon-color: darkred;
     $trip-search-color: #3490dc;
+
+    .auth-button {
+        font-family: "Neucha", cursive;
+    }
+
     .logo {
         height: 7vh;
         padding: 1vh 3vw;
+
         &:hover {
             cursor: pointer;
         }

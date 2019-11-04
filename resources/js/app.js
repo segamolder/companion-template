@@ -9,11 +9,11 @@ import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import '@chenfengyuan/datepicker/dist/datepicker.min.css'
 import '@chenfengyuan/datepicker/dist/datepicker.min'
-import { TooltipPlugin } from 'bootstrap-vue'
+import {TooltipPlugin} from 'bootstrap-vue'
+
 Vue.use(TooltipPlugin)
 Vue.use(Vuesax);
 Vue.use(VueRouter);
-
 
 import App from './components/App';
 import Account from './components/account/Layout';
@@ -30,16 +30,24 @@ import AccountPreferencesSettings from './components/settings/Preferences';
 import AccountUserSettings from './components/settings/User';
 import MyTrips from './components/trip/myTrips';
 //#endregion
+//#region Auth
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+//#endregion
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
-        { path: '/', component: Welcome },
-        { path: '/trip/search', component: TripSearch },
-        { path: '/trip/create', component: TripCreate },
-        { path: '/trip/my-trips', component: MyTrips },
-        { path: '/account/:id',
+        {path: '/', component: Welcome},
+        {path: '/trip/search', component: TripSearch},
+        {path: '/trip/create', component: TripCreate, meta: { middlewareAuth: true }},
+        {path: '/trip/my-trips', component: MyTrips, meta: { middlewareAuth: true }},
+        {path: '/login', component: Login},
+        {path: '/register', component: Register},
+        {
+            path: '/account/:id',
             component: Account,
+            meta: { middlewareAuth: true },
             props: true,
             children: [
                 {
@@ -59,8 +67,10 @@ const router = new VueRouter({
                 },
             ]
         },
-        { path: '/settings/:id',
+        {
+            path: '/settings/:id',
             component: AccountSettings,
+            meta: { middlewareAuth: true },
             props: true,
             children: [
                 {
@@ -93,6 +103,27 @@ const router = new VueRouter({
     ]
 });
 
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.middlewareAuth)) {
+        if (!auth.check()) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            });
+
+            return;
+        }
+    }
+
+    next();
+})
+
+window.Event = new Vue;
+import Auth from './auth';
+window.auth = new Auth();
+
+import Api from './api.js';
+window.api = new Api();
 
 const app = new Vue({
     components: {App},
