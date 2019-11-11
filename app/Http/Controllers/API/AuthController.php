@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Services\Contracts\CarServiceContract;
+use App\Services\Contracts\PreferencesServiceContract;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,13 +12,36 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * @var PreferencesServiceContract
+     */
+    private $_preferencesService;
+    /**
+     * @var CarServiceContract
+     */
+    private $_carService;
+
+    /**
+     * AuthController constructor.
+     * @param PreferencesServiceContract $_preferencesService
+     * @param CarServiceContract $_carService
+     */
+    public function __construct(PreferencesServiceContract $_preferencesService, CarServiceContract $_carService)
+    {
+        $this->_preferencesService = $_preferencesService;
+        $this->_carService = $_carService;
+    }
+
     public function register()
     {
-        User::create([
+        $user = User::create([
             'name' => request('name'),
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
+
+        $this->_preferencesService->CreateUserPreferences($user->id);
+        $this->_carService->CreateCarInfo($user->id);
 
         return response()->json(['status' => 201]);
     }

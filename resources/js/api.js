@@ -4,7 +4,6 @@ class Api {
 
     call (requestType, url, data = null) {
         return new Promise((resolve, reject) => {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + auth.token;
             axios[requestType](url, data)
                 .then(response => {
                     resolve(response);
@@ -12,6 +11,8 @@ class Api {
                 .catch(({response}) => {
                     if (response.status === 401) {
                         auth.logout();
+                        window.location.href ='/';
+                        alert('Не авторизован');
                     }
 
                     reject(response);

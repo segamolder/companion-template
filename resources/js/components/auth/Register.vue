@@ -59,7 +59,7 @@
                             this.$vs.notify({title: 'Успешно!', text: 'Можете войти в аккаунт', color: 'success'})
                         })
                         .catch(({response}) => {
-                            alert(response.data.message);
+                            console.log(response.data.message);
                         });
                 } else {
                     this.$vs.notify({title: 'Ошибка!', text: 'Поля не заполнены или заполнены не правильно', color: 'danger'})

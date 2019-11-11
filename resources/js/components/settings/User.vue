@@ -5,7 +5,7 @@
         <vs-avatar size="150px" :src="data.user_image" />
       </vs-col>
       <vs-col vs-w="6" class="user-settings-container__upload-photo__upload">
-        <vs-upload style="width: auto;" action="#" @on-success="successUpload" />
+        <vs-upload style="width: auto;" :action="'/api/image/user'" fileName="user" :headers="token" @on-success="successUpload" />
       </vs-col>
     </vs-row>
     <vs-row class="user-settings-container__inputs-container">
@@ -34,7 +34,7 @@
         />
         <vs-row class="user-settings-container__inputs-container__second-block__buttons">
           <vs-button v-if="!data.is_email_verified" type="line">Отправить подтверждение на почту</vs-button>
-          <vs-button @click="save" color="primary" type="filled">Сохранить</vs-button>
+          <vs-button class="vs-con-loading__container" id="save" @click="save" color="primary" type="filled">Сохранить</vs-button>
         </vs-row>
       </vs-col>
     </vs-row>
@@ -46,18 +46,48 @@ import Inputmask from "inputmask";
 export default {
   data() {
     return {
+      currentUrl: window.location.host,
       data: auth.user,
+      token: {
+        "Authorization":"Bearer "+window.localStorage.getItem("token")
+      }
     };
   },
   methods: {
     save() {
-
+      this.$vs.loading({
+        background: 'primary',
+        color: '#fff',
+        container: '#save',
+        scale: 0.45
+      });
+      api.call('put', '/api/user', this.data).then((response) => {
+        auth.setUserInfo(this.data);
+        this.$vs.loading.close('#save > .con-vs-loading');
+        this.$vs.notify({
+          color: "success",
+          title: "Успешно обновлено",
+          text: ""
+        });
+      }).catch((ex)=> {
+        this.$vs.loading.close('#save > .con-vs-loading');
+        this.$vs.notify({
+          color: "danger",
+          title: "Не удалось обновить",
+          text: ""
+        });
+        console.log(ex);
+      })
     },
     successUpload() {
-      this.$vs.notify({
-        color: "success",
-        title: "Upload Success",
-        text: "Lorem ipsum dolor sit amet, consectetur"
+      api.call('get', '/api/image/user').then((response) => {
+        this.data.user_image = response.data;
+        this.$vs.notify({
+          color: "success",
+          title: "Успешно загружено",
+          text: ""
+        });
+        auth.setUserInfo(this.data);
       });
     },
 

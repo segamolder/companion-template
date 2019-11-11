@@ -94,6 +94,9 @@
                 this.user = auth.user;
             });
         },
+        updated() {
+            this.authenticated = auth.check();
+        }
     }
 </script>
 

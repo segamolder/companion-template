@@ -1,152 +1,207 @@
 <template>
-  <div class="preferences-container">
-    <div class="preferences">
-      <!-- Первая строка (Диалог) -->
-      <div v-on:click="setPreference('comments', 'low')" id="comments-low">
-        <i class="fas fa-comments low"></i>
-        <p>Люблю помолчать</p>
-      </div>
-      <div v-on:click="setPreference('comments', 'medium')" id="comments-medium">
-        <i class="fas fa-comments medium"></i>
-        <p>По-настроению могу поговорить</p>
-      </div>
-      <div v-on:click="setPreference('comments', 'height')" id="comments-height">
-        <i class="fas fa-comments height"></i>
-        <p>Люблю поболтать</p>
-      </div>
-      <!-- Вторая строка (Курение) -->
-      <div v-on:click="setPreference('smoking', 'low')" id="smoking-low">
-        <i class="fas fa-smoking low"></i>
-        <p>В машине не курить</p>
-      </div>
-      <div v-on:click="setPreference('smoking', 'medium')" id="smoking-medium">
-        <i class="fas fa-smoking medium"></i>
-        <p>Иногда разрешаю покурить</p>
-      </div>
-      <div v-on:click="setPreference('smoking', 'height')" id="smoking-height">
-        <i class="fas fa-smoking height"></i>
-        <p>Курю в машине и вам не запрещаю</p>
-      </div>
-      <!-- Третья строка (Животные) -->
-      <div v-on:click="setPreference('paw', 'low')" id="paw-low">
-        <i class="fas fa-paw low"></i>
-        <p>Без животных</p>
-      </div>
-      <div v-on:click="setPreference('paw', 'medium')" id="paw-medium">
-        <i class="fas fa-paw medium"></i>
-        <p>Зависит от животного</p>
-      </div>
-      <div v-on:click="setPreference('paw', 'height')" id="paw-height">
-        <i class="fas fa-paw height"></i>
-        <p>Можно с животными</p>
-      </div>
-      <!-- Четвертая строка (Музыка) -->
-      <div v-on:click="setPreference('music', 'low')" id="music-low">
-        <i class="fas fa-music low"></i>
-        <p>Люблю тишину</p>
-      </div>
-      <div v-on:click="setPreference('music', 'medium')" id="music-medium">
-        <i class="fas fa-music medium"></i>
-        <p>Слушаю по-настроению</p>
-      </div>
-      <div v-on:click="setPreference('music', 'height')" id="music-height">
-        <i class="fas fa-music height"></i>
-        <p>Слушаю всё подряд</p>
-      </div>
+    <div class="preferences-container">
+        <div class="preferences">
+            <!-- Первая строка (Диалог) -->
+            <div v-on:click="setPreference('comments', 'low')" id="comments-low">
+                <i class="fas fa-comments low"></i>
+                <p>Люблю помолчать</p>
+            </div>
+            <div v-on:click="setPreference('comments', 'medium')" id="comments-medium">
+                <i class="fas fa-comments medium"></i>
+                <p>По-настроению могу поговорить</p>
+            </div>
+            <div v-on:click="setPreference('comments', 'height')" id="comments-height">
+                <i class="fas fa-comments height"></i>
+                <p>Люблю поболтать</p>
+            </div>
+            <!-- Вторая строка (Курение) -->
+            <div v-on:click="setPreference('smoking', 'low')" id="smoking-low">
+                <i class="fas fa-smoking low"></i>
+                <p>В машине не курить</p>
+            </div>
+            <div v-on:click="setPreference('smoking', 'medium')" id="smoking-medium">
+                <i class="fas fa-smoking medium"></i>
+                <p>Иногда разрешаю покурить</p>
+            </div>
+            <div v-on:click="setPreference('smoking', 'height')" id="smoking-height">
+                <i class="fas fa-smoking height"></i>
+                <p>Курю в машине и вам не запрещаю</p>
+            </div>
+            <!-- Третья строка (Животные) -->
+            <div v-on:click="setPreference('paw', 'low')" id="paw-low">
+                <i class="fas fa-paw low"></i>
+                <p>Без животных</p>
+            </div>
+            <div v-on:click="setPreference('paw', 'medium')" id="paw-medium">
+                <i class="fas fa-paw medium"></i>
+                <p>Зависит от животного</p>
+            </div>
+            <div v-on:click="setPreference('paw', 'height')" id="paw-height">
+                <i class="fas fa-paw height"></i>
+                <p>Можно с животными</p>
+            </div>
+            <!-- Четвертая строка (Музыка) -->
+            <div v-on:click="setPreference('music', 'low')" id="music-low">
+                <i class="fas fa-music low"></i>
+                <p>Люблю тишину</p>
+            </div>
+            <div v-on:click="setPreference('music', 'medium')" id="music-medium">
+                <i class="fas fa-music medium"></i>
+                <p>Слушаю по-настроению</p>
+            </div>
+            <div v-on:click="setPreference('music', 'height')" id="music-height">
+                <i class="fas fa-music height"></i>
+                <p>Слушаю всё подряд</p>
+            </div>
+        </div>
+        <vs-button id="save" class="save-button vs-con-loading__container" @click="updatePreferences" color="primary" type="border">Сохранить
+        </vs-button>
     </div>
-    <vs-button class="save-button" color="primary" type="border">Сохранить</vs-button>
-  </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      talkPreferenceType: "",
-      smokePreferenceType: "",
-      animalPreferenceType: "",
-      musicPreferenceType: ""
+    export default {
+        data() {
+            return {
+                talkPreferenceType: "",
+                smokePreferenceType: "",
+                animalPreferenceType: "",
+                musicPreferenceType: "",
+                user_id: window.localStorage.getItem("id")
+            };
+        },
+        methods: {
+            setPreference(icon, type) {
+                this.disableBorderRow(icon);
+                let id = "#" + icon + "-" + type;
+                $(id).css({border: "1px solid darkcyan"});
+                switch (icon) {
+                    case "comments":
+                        this.talkPreferenceType = type;
+                        break;
+                    case "smoking":
+                        this.smokePreferenceType = type;
+                        break;
+                    case "paw":
+                        this.animalPreferenceType = type;
+                        break;
+                    case "music":
+                        this.musicPreferenceType = type;
+                        break;
+                }
+            },
+            disableBorderRow(icon) {
+                $("#" + icon + "-low").css({border: "none"});
+                $("#" + icon + "-medium").css({border: "none"});
+                $("#" + icon + "-height").css({border: "none"});
+            },
+            getPreferences() {
+                this.$vs.loading();
+                api.call('get', '/api/preferences/user/' + this.user_id).then((response) => {
+                    this.talkPreferenceType = response.data.talk;
+                    this.setPreference('comments', response.data.talk);
+                    this.smokePreferenceType = response.data.smoke;
+                    this.setPreference('smoking', response.data.smoke);
+                    this.animalPreferenceType = response.data.animal;
+                    this.setPreference('paw', response.data.animal);
+                    this.musicPreferenceType = response.data.music;
+                    this.setPreference('music', response.data.music);
+                    this.$vs.loading.close();
+                });
+            },
+            updatePreferences() {
+                let data = {
+                    talk: this.talkPreferenceType,
+                    smoke: this.smokePreferenceType,
+                    animal: this.animalPreferenceType,
+                    music: this.musicPreferenceType
+                };
+                this.$vs.loading({
+                    background: 'primary',
+                    color: '#fff',
+                    container: '#save',
+                    scale: 0.45
+                });
+                api.call('put', '/api/preferences/update', data).then((response) => {
+                    this.$vs.loading.close('#save > .con-vs-loading');
+                    this.$vs.notify({
+                        color: "success",
+                        title: "Успешно обновлено",
+                        text: ""
+                    });
+                }).catch((ex) => {
+                    this.$vs.loading.close('#save > .con-vs-loading');
+                    this.$vs.notify({
+                        color: "danger",
+                        title: "Не удалось обновить",
+                        text: ""
+                    });
+                    console.log(ex);
+                });
+            }
+        },
+        created() {
+            this.getPreferences();
+        }
     };
-  },
-  methods: {
-    setPreference(icon, type) {
-      this.disableBorderRow(icon);
-      let id = "#" + icon + "-" + type;
-      $(id).css({ border: "1px solid darkcyan" });
-      switch (icon) {
-        case "comments":
-          this.talkPreferenceType = type;
-          break;
-        case "smoking":
-          this.smokePreferenceType = type;
-          break;
-        case "paw":
-          this.animalPreferenceType = type;
-          break;
-        case "music":
-          this.musicPreferenceType = type;
-          break;
-      }
-    },
-    disableBorderRow(icon) {
-      $("#" + icon + "-low").css({ border: "none" });
-      $("#" + icon + "-medium").css({ border: "none" });
-      $("#" + icon + "-height").css({ border: "none" });
-    }
-  }
-};
 </script>
 
 <style scoped lang="scss">
-.preferences-container {
-  font-family: "Montserrat", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 85vh;
-  .preferences {
-    width: 70%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      padding: 5px;
-      margin: 5px;
-      p {
-        text-align: center;
-        margin-top: 5px;
-      }
+    .preferences-container {
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 85vh;
+
+        .preferences {
+            width: 70%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-gap: 10px;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                padding: 5px;
+                margin: 5px;
+
+                p {
+                    text-align: center;
+                    margin-top: 5px;
+                }
+            }
+        }
     }
-  }
-}
-.low {
-  color: #ff4757;
-}
-.medium {
-  color: #ffba00;
-}
-.height {
-  color: #41c149;
-}
 
-.talk {
-  margin: 10px;
-}
+    .low {
+        color: #ff4757;
+    }
 
-.smoke {
-  margin: 10px;
-}
+    .medium {
+        color: #ffba00;
+    }
 
-.save-button {
-  position: absolute;
-  margin: 30px;
-  bottom: 0;
-}
+    .height {
+        color: #41c149;
+    }
+
+    .talk {
+        margin: 10px;
+    }
+
+    .smoke {
+        margin: 10px;
+    }
+
+    .save-button {
+        position: absolute;
+        margin: 30px;
+        bottom: 0;
+    }
 </style>

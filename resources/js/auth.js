@@ -13,8 +13,9 @@ class Auth {
     login (token, user) {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('user', JSON.stringify(user));
+        window.localStorage.setItem('id', JSON.stringify(user.id));
 
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
         this.token = token;
         this.user = user;
@@ -39,8 +40,12 @@ class Auth {
                 Event.$emit('userLoggedOut');
             })
             .catch(({response}) => {
-                alert(response.data.message);
+                console.log(response.data.message);
             });
+    }
+
+    setUserInfo(user) {
+        window.localStorage.setItem("user", JSON.stringify(user));
     }
 }
 

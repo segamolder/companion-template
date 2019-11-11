@@ -43,7 +43,7 @@
                         this.$vs.notify({title:'Успешно!',text:'Выполнен вход',color:'success'})
                     })
                     .catch(({response}) => {
-                        alert(response.data.message);
+                        console.log(response.data.message);
                     });
             }
         }
